@@ -1,0 +1,63 @@
+name: Autograding
+on: [push]
+jobs:
+  autograding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check platformio.ini for custom partitions
+        id: check_platformio
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Check platformio.ini
+          setup-command: ""
+          command: grep -E "^board_build.partitions\s*=\s*partitions.csv" platformio.ini
+          timeout: 10
+          max-score: 20
+
+      - name: Check partitions.csv existence
+        id: check_partitions
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Check partitions.csv
+          setup-command: ""
+          command: ls partitions.csv
+          timeout: 10
+          max-score: 20
+
+      - name: Check main.cpp for NVS logic
+        id: check_nvs
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Check NVS logic
+          setup-command: ""
+          command: grep "Preferences" src/main.cpp && grep "preferences.begin" src/main.cpp
+          timeout: 10
+          max-score: 20
+
+      - name: Check main.cpp for LittleFS logic
+        id: check_littlefs
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Check LittleFS logic
+          setup-command: ""
+          command: grep "LittleFS" src/main.cpp && grep "LittleFS.begin" src/main.cpp
+          timeout: 10
+          max-score: 20
+
+      - name: Check MemoryMap.md report
+        id: check_memory_map
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: Check MemoryMap.md
+          setup-command: ""
+          command: ls docs/MemoryMap.md
+          timeout: 10
+          max-score: 20
+
+      - name: Autograding Reporter
+        uses: education/autograding-grading-reporter@v1
+        with:
+          runners: check_platformio,check_partitions,check_nvs,check_littlefs,check_memory_map
