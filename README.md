@@ -1,5 +1,3 @@
-Viewed basic-02-unit-partition-table.html:1-433
-
 針對 **`basic-02-unit-partition-table` (ESP32 記憶體分區表)** 單元，這是學員從「黑盒開發」轉向「系統架構規劃」的專業進階。它要求學員具備「土地重劃」的視野，學會如何將有限的 Flash 資源重新分配給程式碼 (App)、數據 (NVS) 與檔案系統 (LittleFS)，並實作數據的長效持久化存儲。
 
 以下是在 **GitHub Classroom** 部署其作業 (Assignments) 的具體建議：
