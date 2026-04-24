@@ -60,4 +60,4 @@ jobs:
       - name: Autograding Reporter
         uses: education/autograding-grading-reporter@v1
         with:
-          runners: check_platformio,check_partitions,check_nvs,check_littlefs,check_memory_map
+          runners: "check_platformio, check_partitions, check_nvs, check_littlefs, check_memory_map"
