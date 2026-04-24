@@ -59,5 +59,11 @@ jobs:
 
       - name: Autograding Reporter
         uses: education/autograding-grading-reporter@v1
+        env:
+          CHECK1_RESULTS: "${{steps.check1.outputs.result}}"
+          CHECK2_RESULTS: "${{steps.check2.outputs.result}}"
+          CHECK3_RESULTS: "${{steps.check3.outputs.result}}"
+          CHECK4_RESULTS: "${{steps.check4.outputs.result}}"
+          CHECK5_RESULTS: "${{steps.check5.outputs.result}}"
         with:
           runners: check1,check2,check3,check4,check5
