@@ -4,13 +4,13 @@
 
 | Partition Name | Offset (HEX) | Size (HEX/Bytes) | Description |
 |----------------|--------------|------------------|-------------|
-| nvs            |              |                  |             |
-| otadata        |              |                  |             |
-| app0           |              |                  |             |
-| storage        |              |                  |             |
+| nvs            | 0x9000       | 0x5000 / 20KB    | Non-volatile storage for small key-value pairs. |
+| otadata        | 0xE000       | 0x2000 / 8KB     | OTA operational data to manage firmware updates. |
+| app0           | 0x10000      | 0x200000 / 2MB   | Primary application firmware partition. |
+| storage        | 0x210000     | 0x180000 / 1.5MB | LittleFS file system partition for assets. |
 
 ## 自我檢查表
-- [ ] 所有 Offset 是否皆為 0x1000 (4KB) 的倍數？
-- [ ] app0 的空間是否達到 2MB (0x200000)？
-- [ ] storage 的空間是否達到 1.5MB (0x180000)？
-- [ ] 各分區之間是否有重疊 (Overlap)？
+- [x] 所有 Offset 是否皆為 0x1000 (4KB) 的倍數？
+- [x] app0 的空間是否達到 2MB (0x200000)？
+- [x] storage 的空間是否達到 1.5MB (0x180000)？
+- [x] 各分區之間是否有重疊 (Overlap)？
